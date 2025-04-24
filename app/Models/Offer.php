@@ -14,6 +14,7 @@ class Offer extends Model
         'price',
         'currency_id',
         'show_phone',
+        'visible',
     ];
 
     protected $casts = [

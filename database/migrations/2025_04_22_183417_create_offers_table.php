@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->foreignId('currency_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('show_phone')->default(true);
+            $table->boolean('visible')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
