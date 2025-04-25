@@ -44,6 +44,12 @@ php artisan migrate:fresh --seed
 npm install
 ```
 
+### Create link between storage locations (for photo saving)
+
+```
+php artisan storage:link
+```
+
 ### Launch the Local Development Server
 
 ```

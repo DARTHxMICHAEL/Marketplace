@@ -41,3 +41,12 @@ Route::get('/offers/edit/{offer}', [OfferEditController::class, 'edit'])
 
 Route::put('/offers/{offer}', [OfferEditController::class, 'update'])
 ->middleware(['auth', 'verified'])->name('offers.update');
+
+
+// VUE.JS endpoints
+Route::get('/api/offer-form-data', function () {
+    return response()->json([
+        'currencies' => \App\Models\Currency::all(),
+        'categories' => \App\Models\Category::all(),
+    ]);
+});
