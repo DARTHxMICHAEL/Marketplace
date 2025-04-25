@@ -7,6 +7,31 @@
             </div>
         </x-slot>
 
+        <!-- Filter + Search -->
+        <div class="max-w-5xl mx-auto px-4 mb-6 pt-5">
+            <form method="GET" action="{{ route('marketplace') }}" class="flex flex-wrap gap-4 items-center">
+
+                <!-- Search -->
+                <input type="text" name="search" value="{{ request('search') }}"
+                    class="form-input flex-1 px-4 py-2 rounded border-gray-300"
+                    placeholder="Search by title...">
+
+                <!-- Category -->
+                <select name="category" class="form-select px-4 py-2 rounded border-gray-300 w-1/5">
+                    <option value="">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Filter
+                </button>
+            </form>
+        </div>
+
         <!-- Success message -->
         @if (session('success'))
             <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">

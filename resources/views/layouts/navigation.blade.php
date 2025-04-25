@@ -18,9 +18,6 @@
                     <x-nav-link :href="route('offers.list')" :active="request()->routeIs('offers.list')">
                         {{ __('My offers') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('offers.create')" :active="request()->routeIs('offers.create')">
-                        {{ __('Create a new offer') }}
-                    </x-nav-link>
                 </div>
             </div>
 
