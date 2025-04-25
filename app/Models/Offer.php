@@ -19,6 +19,7 @@ class Offer extends Model
 
     protected $casts = [
         'show_phone' => 'boolean',
+        'visible' => 'boolean',
     ];
 
     public function user()
@@ -39,7 +40,6 @@ class Offer extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class)
-        ->using(CategoryOffer::class)
-        ->withTimestamps();
+        ->using(CategoryOffer::class);
     }
 }

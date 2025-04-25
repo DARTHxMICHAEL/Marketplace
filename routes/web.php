@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Offers\OfferListController;
+use App\Http\Controllers\Offers\OfferCreateController;
+use App\Http\Controllers\Offers\OfferShowController;
+use App\Http\Controllers\Offers\OfferEditController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('marketplace');
 })->middleware(['auth', 'verified'])->name('marketplace');
-
-Route::get('/my-offers', function () {
-    return view('user_offers');
-})->middleware(['auth', 'verified'])->name('my_offers');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -18,3 +18,26 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// Offers
+Route::get('/', [OfferListController::class, 'marketplace'])
+->middleware(['auth', 'verified'])->name('marketplace');
+
+Route::get('/offers/list', [OfferListController::class, 'display'])
+->middleware(['auth', 'verified'])->name('offers.list');
+
+Route::get('/offers/create', [OfferCreateController::class, 'create'])
+->middleware(['auth', 'verified'])->name('offers.create');
+
+Route::post('/offers/store', [OfferCreateController::class, 'store'])
+->middleware(['auth', 'verified'])->name('offers.store');
+
+Route::get('/offers/show/{offerId}', [OfferShowController::class, 'display'])
+->middleware(['auth', 'verified'])->name('offers.show');
+
+Route::get('/offers/edit/{offer}', [OfferEditController::class, 'edit'])
+->middleware(['auth', 'verified'])->name('offers.edit');
+
+Route::put('/offers/{offer}', [OfferEditController::class, 'update'])
+->middleware(['auth', 'verified'])->name('offers.update');
