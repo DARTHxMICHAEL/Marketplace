@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.theme-dark nav[role="navigation"] > div:first-child > span,
+.theme-dark nav[role="navigation"] > div:first-child > a {
+    background-color: #7c8187; /* Tailwind gray-800 */
+    color: #f9fafb; /* Tailwind gray-100 */
+    border-color: #374151; /* Tailwind gray-700 */
+}
+
+.theme-dark nav[role="navigation"] > div:first-child > a:hover {
+    background-color: #454648; /* Tailwind gray-900 */
+}

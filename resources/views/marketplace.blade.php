@@ -17,7 +17,7 @@
                     placeholder="Search by title...">
 
                 <!-- Category -->
-                <select name="category" class="form-select px-4 py-2 rounded border-gray-300 w-1/5">
+                <select name="category" class="form-select px-4 py-2 rounded border-gray-300 w-48">
                     <option value="">All Categories</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -39,7 +39,7 @@
             </div>
         @endif
 
-        <!-- User offers list -->
+        <!-- Marketplace offers list -->
         <div class="py-6">
             <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
                 @forelse ($offers as $offer)
@@ -76,6 +76,10 @@
                     <p class="col-span-full text-center text-gray-500">There are no offers yet.</p>
                 @endforelse
             </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 mt-6 theme-dark">
+            {{ $offers->links() }}
         </div>
 
     </x-app-layout>

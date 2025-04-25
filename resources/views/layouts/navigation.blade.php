@@ -73,6 +73,9 @@
             <x-responsive-nav-link :href="route('marketplace')" :active="request()->routeIs('marketplace')">
                 {{ __('marketplace') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('offers.list')" :active="request()->routeIs('offers.list')">
+                {{ __('My offers') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

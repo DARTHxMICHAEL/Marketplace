@@ -10,12 +10,16 @@ use App\Models\Category;
 use App\Models\OfferPhoto;
 use App\Models\CategoryOffer;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class OfferEditController extends Controller
 {
+
+    use AuthorizesRequests;
+    
     public function edit(Offer $offer)
     {
-        //$this->authorize('update', $offer); // Add authorization if needed
+        $this->authorize('update', $offer);
         
         $currencies = Currency::all();
         $categories = Category::all();

@@ -18,25 +18,25 @@ class OfferListController extends Controller
     }
 
     public function marketplace(Request $request)
-{
-    $query = Offer::with(['photos', 'currency', 'categories'])
-        ->where('visible', true);
+    {
+        $query = Offer::with(['photos', 'currency', 'categories'])
+            ->where('visible', true);
 
-    // Search by title
-    if ($search = $request->input('search')) {
-        $query->where('title', 'like', '%' . $search . '%');
+        // Search by title
+        if ($search = $request->input('search')) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        // Filter by category
+        if ($categoryId = $request->input('category')) {
+            $query->whereHas('categories', function ($q) use ($categoryId) {
+                $q->where('categories.id', $categoryId);
+            });
+        }
+
+        $offers = $query->paginate(2)->withQueryString(); // Keep filters across pages
+        $categories = Category::all();
+
+        return view('marketplace', compact('offers', 'categories'));
     }
-
-    // Filter by category
-    if ($categoryId = $request->input('category')) {
-        $query->whereHas('categories', function ($q) use ($categoryId) {
-            $q->where('categories.id', $categoryId);
-        });
-    }
-
-    $offers = $query->paginate(9)->withQueryString(); // Keep filters across pages
-    $categories = Category::all();
-
-    return view('marketplace', compact('offers', 'categories'));
-}
 }

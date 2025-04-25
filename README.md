@@ -21,44 +21,48 @@ If you're using XAMPP (Windows), open your `php.ini` file (e.g. `C:\xampp\php\ph
 ```
 ### Install PHP Dependencies
 
-```
+```bash
 composer install
 ```
 
 ### Environment Setup
 
-```
+```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
 ### Run Database Migrations and Seeder
 
-```
+```bash
 php artisan migrate:fresh --seed
 ```
 
 ### Install JavaScript Dependencies
 
-```
+```bash
 npm install
 ```
 
 ### Create link between storage locations (for photo saving)
 
-```
+```bash
 php artisan storage:link
 ```
 
 ### Launch the Local Development Server
 
-```
+```bash
 cd project-location
 php artisan serve
 
 cd project-location
 npm run dev
 ```
+
+## Seeds
+
+You can login using the following credentials ```johnny@mail.com``` and ```smith@example.com```. The password for both account is ```password```, how creative. If you've done the whole instalation and configuration process corectelly you should be able to access the marketplace.
 
 ## 🐳 Docker (Coming Soon)
 
